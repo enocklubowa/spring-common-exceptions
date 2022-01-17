@@ -9,7 +9,40 @@ A library that sets up the common exceptions encountered in a Spring boot projec
 - General error for other scenarios
 
 ### Usage
-For example during a user creation, you will have to test if there's already a user with the specified username.
+
+#### Dependency
+
+For Maven projects:
+
+```
+<dependency>
+  <groupId>com.enocklubowa</groupId>
+  <artifactId>spring-common-exceptions</artifactId>
+  <version>0.0.1</version>
+</dependency>
+```
+
+For Gradle projects:
+
+```
+implementation 'com.enocklubowa:spring-common-exceptions:0.0.1'
+```
+
+For Gradle Kotlin DSL projects:
+
+```
+implementation("com.enocklubowa:spring-common-exceptions:0.0.1")
+```
+#### Code
+
+Available Exceptions classes:
+
+- `AlreadyExistsException()`
+- `NotFoundException()`
+- `InvalidIdentifierException()`
+- `GeneralException()`
+
+For example during a user update, you will have to test if there's a user with the specified username.
 You can do a check like one below and if it fails, then throw exception with details about the User class and the indentifier.
 
 **Note**: The identifier can either be a `String` or a `Long`
@@ -18,9 +51,7 @@ You can do a check like one below and if it fails, then throw exception with det
 if(userRepository.findByIdEquals(user.getId()).isEmpty()){
     throw new NotFoundException(User.class, user.getId());
 }
-else if(userRepository.findByUsername(user.getUsername()).isPresent()){
-    throw new AlreadyExistsException(User.class, user.getUsername());
-}
+// more code
 ```
 You can still throw the exception by just providing customing message instead of the library default by:
 
