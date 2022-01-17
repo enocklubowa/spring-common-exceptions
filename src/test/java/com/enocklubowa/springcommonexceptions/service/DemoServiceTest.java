@@ -1,5 +1,6 @@
-package com.enocklubowa.springcommonexceptions;
+package com.enocklubowa.springcommonexceptions.service;
 
+import com.enocklubowa.springcommonexceptions.DemoService;
 import com.enocklubowa.springcommonexceptions.exception.AlreadyExistsException;
 import com.enocklubowa.springcommonexceptions.exception.InvalidIdentifierException;
 import com.enocklubowa.springcommonexceptions.exception.NotFoundException;
