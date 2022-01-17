@@ -35,12 +35,7 @@ implementation("com.enocklubowa:spring-common-exceptions:0.0.1")
 ```
 #### Code
 
-Available Exceptions classes:
-
-- `AlreadyExistsException()`
-- `NotFoundException()`
-- `InvalidIdentifierException()`
-- `GeneralException()`
+See available Exceptions classes [here](https://enocklubowa.com/spring-common-exceptions/com/enocklubowa/springcommonexceptions/exception/package-summary.html):
 
 For example during a user update, you will have to test if there's a user with the specified username.
 You can do a check like one below and if it fails, then throw exception with details about the User class and the indentifier.
