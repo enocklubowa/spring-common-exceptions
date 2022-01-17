@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
+/**
+ * Parses and returns the {@link com.enocklubowa.springcommonexceptions.exception.NotFoundException}
+ * to the controller that throws it
+ */
 @RestControllerAdvice
 public class NotFoundAdvice {
 

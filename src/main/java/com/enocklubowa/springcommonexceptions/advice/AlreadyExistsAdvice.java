@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * Parses and returns the {@link com.enocklubowa.springcommonexceptions.exception.AlreadyExistsException}
+ * to the controller that throws it
+ */
 @ControllerAdvice
 public class AlreadyExistsAdvice {
 

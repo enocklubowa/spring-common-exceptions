@@ -3,6 +3,9 @@ package com.enocklubowa.springcommonexceptions.model;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The error body returned by controllers when exceptions are thrown
+ */
 public class ErrorResponse {
     private String message;
     private List<String> details;

@@ -17,6 +17,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Parses and returns the {@link com.enocklubowa.springcommonexceptions.exception.GeneralException}
+ * to the controller that throws it.
+ * Additionally, it handles the exceptions thrown during validation
+ */
 @ControllerAdvice
 public class GeneralExceptionAdvice extends ResponseEntityExceptionHandler {
 
@@ -57,4 +62,5 @@ public class GeneralExceptionAdvice extends ResponseEntityExceptionHandler {
         ErrorResponse error = new ErrorResponse("Validation Failed", details);
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
+
 }
