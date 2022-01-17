@@ -1,5 +1,8 @@
 # spring-common-exceptions
 Common Spring boot exceptions
+![build workflow](https://github.com/enocklubowa/common-spring-boot-exceptions/actions/workflows/build.yml/badge.svg)
+
+### Introduction
 A library that sets up the common exceptions encountered in a Spring boot project.
 
 ### Scenarios catered for include
