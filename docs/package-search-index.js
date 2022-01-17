@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.enocklubowa.springcommonexceptions"},{"l":"com.enocklubowa.springcommonexceptions.advice"},{"l":"com.enocklubowa.springcommonexceptions.exception"},{"l":"com.enocklubowa.springcommonexceptions.model"}]
