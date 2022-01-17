@@ -20,20 +20,20 @@ For Maven projects:
 <dependency>
   <groupId>com.enocklubowa</groupId>
   <artifactId>spring-common-exceptions</artifactId>
-  <version>0.0.1</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
 For Gradle projects:
 
 ```
-implementation 'com.enocklubowa:spring-common-exceptions:0.0.1'
+implementation 'com.enocklubowa:spring-common-exceptions:0.1.0'
 ```
 
 For Gradle Kotlin DSL projects:
 
 ```
-implementation("com.enocklubowa:spring-common-exceptions:0.0.1")
+implementation("com.enocklubowa:spring-common-exceptions:0.1.0")
 ```
 #### Code
 
