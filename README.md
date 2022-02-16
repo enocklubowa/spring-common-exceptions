@@ -20,7 +20,7 @@ For Maven projects:
 <dependency>
   <groupId>com.enocklubowa</groupId>
   <artifactId>spring-common-exceptions</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 
@@ -65,3 +65,49 @@ When these exceptions are thrown inside a controller method then an error with w
     "timestamp":""
 }
 ```
+### Additional Exception Handling
+
+If you are using the native Spring validation on your request objects then you can customize the response a client receives by extending `ResponseEntityExceptionHandler`.
+
+Create a class for example `CustomValidationResponse`
+
+```java
+@ControllerAdvice
+public class GeneralExceptionAdvice extends ResponseEntityExceptionHandler {
+    
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        return generateValidationError(ex);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        ErrorResponse error = new ErrorResponse("Message not readable", null);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        return generateValidationError(ex);
+    }
+
+    private ResponseEntity<Object> generateValidationError(BindException ex){
+        List<String> details = new ArrayList<>();
+        for(ObjectError error : ex.getBindingResult().getAllErrors()){
+            details.add(error.getDefaultMessage());
+        }
+
+        ErrorResponse error = new ErrorResponse("Validation Failed", details);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+}
+```
+The class above uses an `ErrorResponse` class I already included in the library for standard error parsing.
+
+`handleMethodArgumentNotValid` is called when an argument annotated with `@Valid` fails.
+
+`handleHttpMessageNotReadable` is called when a request body is completely out of this world.
+
+`handleBindException` is called when there are fatal binding errors.
+
+You can override more methods from `ResponseEntityExceptionHandler` in case you need more customization, but you have to do this in only one class so that the application doesn't have conflicts on how to respond to the requesting system.
