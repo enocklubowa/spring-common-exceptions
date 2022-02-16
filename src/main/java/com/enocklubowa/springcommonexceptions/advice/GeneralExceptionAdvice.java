@@ -20,10 +20,9 @@ import java.util.List;
 /**
  * Parses and returns the {@link com.enocklubowa.springcommonexceptions.exception.GeneralException}
  * to the controller that throws it.
- * Additionally, it handles the exceptions thrown during validation
  */
 @ControllerAdvice
-public class GeneralExceptionAdvice extends ResponseEntityExceptionHandler {
+public class GeneralExceptionAdvice {
 
     @ExceptionHandler(GeneralException.class)
     ResponseEntity<Object> generalExceptionAdvice(GeneralException exception){
@@ -35,32 +34,6 @@ public class GeneralExceptionAdvice extends ResponseEntityExceptionHandler {
             error = new ErrorResponse("Internal error", null);
         }
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return generateValidationError(ex);
-    }
-
-    @Override
-    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        ErrorResponse error = new ErrorResponse("Message not readable", null);
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-    }
-
-    @Override
-    protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return generateValidationError(ex);
-    }
-
-    private ResponseEntity<Object> generateValidationError(BindException ex){
-        List<String> details = new ArrayList<>();
-        for(ObjectError error : ex.getBindingResult().getAllErrors()){
-            details.add(error.getDefaultMessage());
-        }
-
-        ErrorResponse error = new ErrorResponse("Validation Failed", details);
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
 }
