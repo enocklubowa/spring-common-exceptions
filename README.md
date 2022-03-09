@@ -35,6 +35,19 @@ For Gradle Kotlin DSL projects:
 ```
 implementation("com.enocklubowa:spring-common-exceptions:0.1.0")
 ```
+Scan for the components in the library with
+
+```java
+@SpringBootApplication(scanBasePackages = {"com.enocklubowa.springcommonexceptions", "your other packages"})
+public class SampleApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SampleApplication.class, args);
+	}
+
+}
+
+```
 #### Code
 
 See available Exceptions classes [here](https://enocklubowa.com/spring-common-exceptions/com/enocklubowa/springcommonexceptions/exception/package-summary.html):
